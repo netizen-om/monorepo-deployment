@@ -11,9 +11,12 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@prisma/client": "^7.1.0",
     "@repo/db": "workspace:^",
     "@repo/ui": "workspace:*",
+    "dotenv": "^17.2.3",
     "next": "^16.0.7",
+    "pg": "^8.16.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

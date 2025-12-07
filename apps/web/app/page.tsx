@@ -7,9 +7,6 @@ type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
   srcDark: string;
 };
-
-
-
 export default async function Home() {
 
   const user = await client.user.findFirst();
