@@ -28,6 +28,7 @@ jobs:
             cd ~
             cd monorepo-deployment
             git pull origin main
+            pnpm run build  
             pm2 restart http-server
             pm2 restart ws-server
             pm2 restart fe-server
