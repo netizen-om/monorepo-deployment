@@ -22,10 +22,12 @@ jobs:
           key: ${{ secrets.PRIVATE_SSH_KEY }}
           port: 22
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            node -v
             cd ~
             cd monorepo-deployment
             git pull origin main
-            node -v
             pm2 restart http-server
             pm2 restart ws-server
             pm2 restart fr-server
