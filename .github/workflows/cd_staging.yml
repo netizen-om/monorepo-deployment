@@ -1,0 +1,31 @@
+name: Deploy to Staging VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Push to Staging VM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 20.24.81.181
+          username: azureuser
+          key: ${{ secrets.PRIVATE_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~
+            cd monorepo-deployment
+            git pull origin main
+            pm2 restart http-server
+            pm2 restart ws-server
+            pm2 restart fr-server
+
